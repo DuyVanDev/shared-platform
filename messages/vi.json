@@ -1,0 +1,91 @@
+{
+  "Home": {
+    "Bắt đầu": "Bắt đầu",
+    "Mô tả": "Mô tả"
+  },
+  "Nav": {
+    "home": "Trang chủ",
+    "snippets": "Đoạn mã",
+    "login": "Đăng nhập",
+    "logout": "Đăng xuất",
+    "mySnippets": "Của tôi",
+    "english": "Tiếng Anh",
+    "vietnamese": "Tiếng Việt",
+    "addnew": "Thêm mới"
+  },
+  "Snippet": {
+    "language": "Ngôn ngữ",
+    "topic": "Chủ đề",
+    "searchPlaceholder": "Tìm kiếm đoạn mã...",
+    "allsnippets": "Tất cả đoạn mã",
+    "update": "Cập nhật",
+    "delete": "Xóa",
+    "SnippetURLcopiedtoclipboard": "URL đoạn mã đã được sao chép vào clipboard",
+    "loading": "Đang tải...",
+    "noSnippetsFound": "Không tìm thấy đoạn mã nào.",
+    "back": "Quay lại",
+    "share": "Chia sẻ",
+    "createdate": "Ngày tạo",
+    "private": "Riêng tư",
+    "public": "Công khai",
+    "copied": "Đã sao chép!",
+    "copy": "Sao chép",
+    "editSnippet": "Chỉnh sửa đoạn mã"
+  },
+  "CreateSnippet": {
+    "createSnippet": "Tạo đoạn mã",
+    "editSnippet": "Chỉnh sửa đoạn mã",
+    "description": "Mô tả",
+    "code": "Mã",
+    "tags": "Thẻ",
+    "selectTags": "Chọn thẻ",
+    "addNewTag": "Thêm thẻ mới",
+    "create": "Tạo",
+    "update": "Cập nhật",
+    "language": "Ngôn ngữ",
+    "title": "Tiêu đề",
+    "cancel": "Hủy bỏ",
+    "pleaseentertitle": "Vui lòng nhập tiêu đề",
+    "pleaseentercode": "Vui lòng nhập mã",
+    "pleaseselectlanguage": "Vui lòng chọn ngôn ngữ",
+    "Processing": "Đang xử lý...",
+    "public": "Công khai",
+    "onlyyou": "Chỉ mình bạn",
+    "everyonecansee": "Mọi người có thể xem"
+  },
+  "Select": {
+    "selectPlaceholder": "Chọn..."
+  },
+  "Login": {
+    "login": "Đăng nhập",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "noAccount": "Chưa có tài khoản?",
+    "register": "Đăng ký",
+    "forgotPassword": "Quên mật khẩu?",
+    "pleaseEnterEmail": "Vui lòng nhập email",
+    "pleaseEnterValidEmail": "Vui lòng nhập email hợp lệ",
+    "pleaseEnterPassword": "Vui lòng nhập mật khẩu",
+    "Processing": "Đang xử lý...",
+    "loginSuccessful": "Đăng nhập thành công",
+    "loginfailed": "Đăng nhập thất bại"
+  },
+  "Register": {
+    "register": "Đăng ký",
+    "email": "Email",
+    "username": "Tên người dùng",
+    "password": "Mật khẩu",
+    "confirmPassword": "Xác nhận mật khẩu",
+    "alreadyHaveAccount": "Đã có tài khoản?",
+    "login": "Đăng nhập",
+    "pleaseEnterEmail": "Vui lòng nhập email",
+    "pleaseEnterValidEmail": "Vui lòng nhập email hợp lệ",
+    "pleaseEnterUsername": "Vui lòng nhập tên người dùng",
+    "pleaseEnterPassword": "Vui lòng nhập mật khẩu",
+    "passwordsDoNotMatch": "Mật khẩu không khớp",
+    "Processing": "Đang xử lý...",
+    "registrationSuccessful": "Đăng ký thành công",
+    "registrationFailed": "Đăng ký thất bại",
+    "passwordlengthvalidate": "Mật khẩu phải có ít nhất 6 ký tự"
+  }
+}

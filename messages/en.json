@@ -1,0 +1,90 @@
+{
+  "Home": {
+    "Bắt đầu": "Get Started",
+    "Mô tả": "Description"
+  },
+  "Nav": {
+    "home": "Home",
+    "snippets": "Snippets",
+    "login": "Login",
+    "logout": "Logout",
+    "mySnippets": "My Snippets",
+    "english": "English",
+    "vietnamese": "Vietnamese",
+    "addnew": "Add New"
+  },
+  "Snippet": {
+    "language": "Language",
+    "topic": "Topic",
+    "searchPlaceholder": "Search snippets...",
+    "allsnippets": "All Snippets",
+    "update": "Update",
+    "delete": "Delete",
+    "SnippetURLcopiedtoclipboard": "Snippet URL copied to clipboard",
+    "loading": "Loading...",
+    "noSnippetsFound": "No snippets found.",
+    "back": "Back",
+    "share": "Share",
+    "createdate": "Create Date",
+    "private": "Private",
+    "public": "Public",
+    "copied": "Copied!",
+    "copy": "Copy",
+    "editSnippet": "Edit Snippet"
+  },
+  "CreateSnippet": {
+    "createSnippet": "Create Snippet",
+    "editSnippet": "Edit Snippet",
+    "description": "Description",
+    "code": "Code",
+    "tags": "Tags",
+    "selectTags": "Select Tags",
+    "addNewTag": "Add New Tag",
+    "create": "Create",
+    "update": "Update",
+    "language": "Language",
+    "title": "Title",
+    "cancel": "Cancel",
+    "pleaseentertitle": "Please enter title",
+    "pleaseentercode": "Please enter code",
+    "pleaseselectlanguage": "Please select language",
+    "Processing": "Processing...",
+    "public": "Public",
+    "onlyyou": "Only you",
+    "everyonecansee": "Everyone can see"
+  },
+  "Select": {
+    "selectPlaceholder": "Select..."
+  },
+  "Login": {
+    "login": "Login",
+    "email": "Email",
+    "password": "Password",
+    "noAccount": "No account?",
+    "register": "Register",
+    "forgotPassword": "Forgot Password?",
+    "pleaseEnterEmail": "Please enter email",
+    "pleaseEnterValidEmail": "Please enter valid email",
+    "pleaseEnterPassword": "Please enter password",
+    "Processing": "Processing...",
+    "loginSuccessful": "Login successful",
+    "loginfailed": "Login failed"
+  },
+  "Register": {
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "haveAccount": "Already have an account?",
+    "login": "Login",
+    "pleaseEnterEmail": "Please enter email",
+    "pleaseEnterValidEmail": "Please enter valid email",
+    "pleaseEnterPassword": "Please enter password",
+    "passwordsDoNotMatch": "Passwords do not match",
+    "pleaseEnterConfirmPassword": "Please enter confirm password",
+    "Processing": "Processing...",
+    "registrationSuccessful": "Registration successful",
+    "registrationFailed": "Registration failed",
+    "passwordlengthvalidate" : "Password must be at least 6 characters long"
+  }
+}
