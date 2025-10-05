@@ -51,7 +51,9 @@
     "Processing": "Đang xử lý...",
     "public": "Công khai",
     "onlyyou": "Chỉ mình bạn",
-    "everyonecansee": "Mọi người có thể xem"
+    "everyonecansee": "Mọi người có thể xem",
+    "updatesuccessful": "Cập nhật thành công",
+    "savesuccessful": "Lưu thành công"
   },
   "Select": {
     "selectPlaceholder": "Chọn..."

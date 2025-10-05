@@ -30,7 +30,7 @@ export default function DashboardPage() {
   const [language, setLanguage] = useState("");
   const [tag, setTag] = useState("");
 
-  const limit = 10;
+  const limit = 9;
 
   useEffect(() => {
     const loadSnippets = async () => {

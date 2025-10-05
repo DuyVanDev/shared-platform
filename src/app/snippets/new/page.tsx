@@ -88,7 +88,7 @@ export default function CreateSnippet({
             })()
         : await createSnippet(body);
 
-      addToast("Cập nhật thành công.", "success");
+      addToast(isEdit ? t("updatesuccessful") : t("savesuccessful"), "success");
 
       if (edit && onUpdate) onUpdate(data);
       ClearForm();

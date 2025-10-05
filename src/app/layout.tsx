@@ -35,18 +35,23 @@ export const metadata: Metadata = {
     "typescript",
     "react",
   ],
-  authors: [{ name: "Shared Platform Team", url: "https://shared-platform.com" }],
+  authors: [
+    {
+      name: "Shared Platform Team",
+      url: "https://shared-platform-qpqf.vercel.app/",
+    },
+  ],
   creator: "Shared Platform Team",
   robots: "index, follow",
   openGraph: {
     title: "Shared Platform - Chia sẻ & Quản lý Code Snippet",
     description:
       "Nền tảng chia sẻ, lưu trữ và quản lý các đoạn mã nguồn cho lập trình viên.",
-    url: "https://shared-platform.com",
+    url: "https://shared-platform-qpqf.vercel.app/",
     siteName: "Shared Platform",
     images: [
       {
-        url: "https://shared-platform.com/og-image.png",
+        url: "https://shared-platform-qpqf.vercel.app//og-image.png",
         width: 1200,
         height: 630,
         alt: "Shared Platform",
@@ -60,7 +65,7 @@ export const metadata: Metadata = {
     title: "Shared Platform - Chia sẻ & Quản lý Code Snippet",
     description:
       "Nền tảng chia sẻ, lưu trữ và quản lý các đoạn mã nguồn cho lập trình viên.",
-    images: ["https://shared-platform.com/og-image.png"],
+    images: ["https://shared-platform-qpqf.vercel.app//og-image.png"],
     creator: "@sharedplatform",
   },
 };

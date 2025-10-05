@@ -43,7 +43,7 @@ export async function generateMetadata({
         type: "article",
         images: [
           {
-            url: "https://snippethub.dev/og-default.png",
+            url: "https://shared-platform-qpqf.vercel.app//og-default.png",
             width: 1200,
             height: 630,
             alt: snippet.title,
@@ -56,7 +56,7 @@ export async function generateMetadata({
         description:
           snippet.description ||
           `A ${snippet.programmingLanguage} snippet from SnippetHub.`,
-        images: ["https://snippethub.dev/og-default.png"],
+        images: ["https://shared-platform-qpqf.vercel.app//og-default.png"],
       },
     };
   } catch {

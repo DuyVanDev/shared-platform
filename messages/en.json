@@ -51,7 +51,9 @@
     "Processing": "Processing...",
     "public": "Public",
     "onlyyou": "Only you",
-    "everyonecansee": "Everyone can see"
+    "everyonecansee": "Everyone can see",
+    "updatesuccessful": "Update successful",
+    "savesuccessful": "Save successful"
   },
   "Select": {
     "selectPlaceholder": "Select..."
