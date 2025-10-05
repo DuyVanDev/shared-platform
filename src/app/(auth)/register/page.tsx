@@ -64,8 +64,6 @@ export default function RegisterPage() {
     });
 
     const data = await res.json();
-
-    console.log(data);
     setIsSubmitting(false);
 
     if (!res.ok) {

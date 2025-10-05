@@ -111,7 +111,7 @@ export default function SnippetView() {
                 <span className="px-2 py-1 text-xs rounded bg-green-100 text-green-700 font-semibold">
                   {snippet.programmingLanguage}
                 </span>
-                {snippet.topics.map((tag) => (
+                {snippet.topics.map((tag: string) => (
                   <span
                     key={tag}
                     className="px-2 py-1 text-xs rounded border text-gray-600"

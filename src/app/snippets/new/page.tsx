@@ -26,11 +26,10 @@ export default function CreateSnippet({
   const router = useRouter();
   const params = useParams();
 
-  // nếu không có props thì fallback sang lấy từ params (dùng trong route gốc)
   const id = params?.id as string | undefined;
   const isEdit = edit || !!id;
   const existingSnippet =
-    initial || (isEdit ? snippets.find((s) => s.id === id) : null);
+    initial || (isEdit ? snippets.find((s) => s._id === id) : null);
 
   // State
   const [title, setTitle] = useState(existingSnippet?.title || "");
@@ -82,7 +81,11 @@ export default function CreateSnippet({
 
     try {
       const data = isEdit
-        ? await updateSnippet(existingSnippet?._id!, body)
+        ? existingSnippet?._id
+          ? await updateSnippet(existingSnippet._id, body)
+          : (() => {
+              throw new Error("Missing snippet id");
+            })()
         : await createSnippet(body);
 
       addToast("Cập nhật thành công.", "success");
@@ -206,7 +209,7 @@ export default function CreateSnippet({
               className={`w-12 h-6 flex items-center rounded-full p-1 transition-colors duration-200 cursor-pointer ${
                 isPublic ? "bg-green-500" : "bg-gray-300"
               }`}
-              onClick={() => setIsPublic((v) => !v)}
+              onClick={() => setIsPublic((v: boolean) => !v)}
               aria-pressed={isPublic}
             >
               <span

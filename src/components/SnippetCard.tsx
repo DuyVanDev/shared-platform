@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { Clock } from "lucide-react";
-import { Snippet, users } from "@/lib/static-data";
 import { useTranslations } from "use-intl";
 import { useAuth } from "@/contexts/AuthContext";
 import CreateSnippet from "@/app/snippets/new/page";
@@ -10,11 +9,12 @@ import Modal from "./Modal";
 import { useState } from "react";
 import { deleteSnippet } from "@/services/snippetService";
 import { useGlobalToast } from "@/contexts/ToastContext";
+import { Snippet } from "@/lib/static-data";
 
 interface SnippetCardProps {
-  snippet: Snippet;
+  snippet: any;
   onDelete?: (id: string) => void;
-  onUpdate?: (snippet: Snippet) => void;
+  onUpdate?: (snippet: any) => void;
 }
 
 export function SnippetCard({ snippet, onDelete, onUpdate }: SnippetCardProps) {
@@ -48,12 +48,12 @@ export function SnippetCard({ snippet, onDelete, onUpdate }: SnippetCardProps) {
 
         {/* Tags */}
         <div className="flex flex-wrap gap-1 mb-3">
-          {snippet?.topics.slice(0, 3).map((tag) => (
+          {snippet?.topics.slice(0, 3).map((topic: string) => (
             <span
-              key={tag}
+              key={topic}
               className="inline-flex items-center rounded-md border border-gray-300 px-2 py-0.5 text-xs text-gray-600"
             >
-              {tag}
+              {topic}
             </span>
           ))}
         </div>

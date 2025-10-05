@@ -5,6 +5,8 @@ import { NextIntlClientProvider, useMessages } from "next-intl";
 import { Header } from "@/components/Header";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { ToastProvider } from "@/contexts/ToastContext";
+import { ReactNode } from "react";
+import { getMessages } from "next-intl/server";
 type Props = {
   children: React.ReactNode;
   params: { locale: string };
@@ -62,13 +64,19 @@ export const metadata: Metadata = {
     creator: "@sharedplatform",
   },
 };
-export default function RootLayout({ children, params }: Props) {
-  const messages = useMessages();
-  const locale = params.locale || "vi";
+export default async function RootLayout({
+  children,
+  params,
+}: {
+  children: ReactNode;
+  params: any; // 👈 Cho phép Next truyền bất kỳ dạng params nào mà không lỗi
+}) {
+  const { locale } = await params;
+  const messages = await getMessages();
 
   return (
-    <html lang={locale}>
-      <body className={`${inter.variable} antialiased`}>
+    <html lang={locale || "vi"}>
+      <body className="antialiased">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <AuthProvider>
             <ToastProvider>

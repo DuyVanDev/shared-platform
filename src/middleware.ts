@@ -8,13 +8,15 @@ export async function middleware(req: NextRequest) {
   const token = req.cookies.get("token")?.value;
 
   // Nếu user đã login thì chặn vào login/register
-  if ((pathname === "/login" || pathname === "/register" || pathname === "/")  && token) {
+  if (
+    (pathname === "/login" || pathname === "/register" || pathname === "/") &&
+    token
+  ) {
     try {
       await jwtVerify(
         token,
         new TextEncoder().encode(process.env.NEXT_PUBLIC_JWT_SECRET!)
       );
-      console.log("Verifying token in 1");
 
       return NextResponse.redirect(new URL("/dashboard", req.url));
     } catch (err) {

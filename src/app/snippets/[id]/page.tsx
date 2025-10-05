@@ -7,14 +7,10 @@ export async function generateMetadata({
   params: Promise<{ id: string }>;
 }) {
   try {
-    const { id } = await params; // ✅ phải await trước
+    const { id } = await params;
     const snippet = await fetchSnippetById(id);
 
-    console.log("Fetched Snippet:", snippet);
-
     if (!snippet) {
-      console.log("Fetched Snippet clien:", snippet);
-
       return {
         title: "Snippet not found | SnippetHub",
         description: "The requested code snippet could not be found.",
@@ -37,12 +33,6 @@ export async function generateMetadata({
         )}.`,
       keywords,
 
-      // 🔗 Canonical URL
-      alternates: {
-        canonical: `https://snippethub.dev/snippets/${params.id}`,
-      },
-
-      // 🧠 Open Graph metadata (Facebook, LinkedIn, etc.)
       openGraph: {
         title: snippet.title,
         description:
@@ -51,7 +41,6 @@ export async function generateMetadata({
             snippet.programmingLanguage
           } covering ${snippet.topics.join(", ")}.`,
         type: "article",
-        url: `https://snippethub.dev/snippets/${params.id}`,
         images: [
           {
             url: "https://snippethub.dev/og-default.png",
@@ -61,8 +50,6 @@ export async function generateMetadata({
           },
         ],
       },
-
-      // 🐦 Twitter Card
       twitter: {
         card: "summary_large_image",
         title: snippet.title,
@@ -72,8 +59,7 @@ export async function generateMetadata({
         images: ["https://snippethub.dev/og-default.png"],
       },
     };
-  } catch (error) {
-    console.log("Error generating metadata:", error);
+  } catch {
     return {
       title: "Snippet | SnippetHub",
       description:

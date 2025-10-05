@@ -11,11 +11,12 @@ import { fetchSnippets } from "@/services/snippetService";
 interface Snippet {
   _id: string;
   title: string;
-  language: string;
+  programmingLanguage: string;
   topics: string[];
   description?: string;
   slug: string;
   createdAt: string;
+  isPublic: boolean;
 }
 export default function DashboardPage() {
   const t = useTranslations("Snippet");
@@ -35,7 +36,13 @@ export default function DashboardPage() {
     const loadSnippets = async () => {
       setLoading(true);
       try {
-        const data = await fetchSnippets({ page, limit, query, language, tag });
+        const data = await fetchSnippets({
+          page,
+          limit,
+          q: query,
+          language,
+          tag,
+        });
         setSnippets(data.snippets);
         setTotal(data.total);
       } catch (err) {
@@ -47,7 +54,6 @@ export default function DashboardPage() {
 
     loadSnippets();
   }, [page, query, language, tag]);
-  console.log("Snippets:", snippets);
 
   const totalPages = Math.ceil(total / limit);
 
@@ -57,7 +63,7 @@ export default function DashboardPage() {
 
   const filteredSnippets = useMemo(() => {
     return snippets
-      .filter((snippet) => snippet.isPublic) // chỉ hiện công khai
+      .filter((snippet) => snippet?.isPublic) // chỉ hiện công khai
       .filter((snippet) => {
         const matchesSearch =
           snippet.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -79,8 +85,6 @@ export default function DashboardPage() {
   };
 
   const handleUpdateSnippet = (updated: Snippet) => {
-    console.log("Updating snippet:", updated);
-    console.log(" snippet:", snippets);
     setSnippets((prev) =>
       prev.map((s) => (s._id === updated._id ? updated : s))
     );

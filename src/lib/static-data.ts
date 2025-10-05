@@ -7,16 +7,17 @@ export interface User {
 }
 
 export interface Snippet {
-  id: string;
+  _id: string;
   title: string;
   description: string;
   code: string;
-  language: string;
-  tags: string[];
+  programmingLanguage: string;
+  topics: string[];
   authorId: string;
   createdAt: string;
   updatedAt: string;
   complexity?: string;
+  isPublic?: boolean;
 }
 export const users: User[] = [
   {
@@ -41,7 +42,7 @@ export const users: User[] = [
 
 export const snippets: Snippet[] = [
   {
-    id: "1",
+    _id: "1",
     title: "Binary Search Implementation",
     description: "Classic binary search algorithm with TypeScript",
     code: `function binarySearch(arr: number[], target: number): number {
@@ -62,15 +63,15 @@ export const snippets: Snippet[] = [
   
   return -1;
 }`,
-    language: "TypeScript",
-    tags: ["algorithms", "search", "arrays"],
+    programmingLanguage: "TypeScript",
+    topics: ["algorithms", "search", "arrays"],
     authorId: "1",
     createdAt: "2025-01-15T10:30:00Z",
     updatedAt: "2025-01-15T10:30:00Z",
     complexity: "O(log n)",
   },
   {
-    id: "2",
+    _id: "2",
     title: "React Custom Hook - useLocalStorage",
     description:
       "A custom React hook for managing localStorage with TypeScript",
@@ -99,15 +100,15 @@ function useLocalStorage<T>(key: string, initialValue: T) {
 
   return [storedValue, setValue] as const;
 }`,
-    language: "TypeScript",
-    tags: ["react", "hooks", "localStorage"],
+    programmingLanguage: "TypeScript",
+    topics: ["react", "hooks", "localStorage"],
     authorId: "2",
     createdAt: "2025-01-20T14:20:00Z",
     updatedAt: "2025-01-20T14:20:00Z",
     complexity: "O(1)",
   },
   {
-    id: "3",
+    _id: "3",
     title: "QuickSort Algorithm",
     description: "Efficient sorting algorithm using divide and conquer",
     code: `function quickSort(arr: number[]): number[] {
@@ -120,15 +121,15 @@ function useLocalStorage<T>(key: string, initialValue: T) {
   
   return [...quickSort(left), ...middle, ...quickSort(right)];
 }`,
-    language: "TypeScript",
-    tags: ["algorithms", "sorting", "recursion"],
+    programmingLanguage: "TypeScript",
+    topics: ["algorithms", "sorting", "recursion"],
     authorId: "1",
     createdAt: "2025-01-18T09:15:00Z",
     updatedAt: "2025-01-18T09:15:00Z",
     complexity: "O(n log n)",
   },
   {
-    id: "4",
+    _id: "4",
     title: "Debounce Function",
     description: "Generic debounce utility for optimizing performance",
     code: `function debounce<T extends (...args: any[]) => any>(
@@ -147,15 +148,15 @@ function useLocalStorage<T>(key: string, initialValue: T) {
     timeout = setTimeout(later, wait);
   };
 }`,
-    language: "TypeScript",
-    tags: ["utilities", "performance", "javascript"],
+    programmingLanguage: "TypeScript",
+    topics: ["utilities", "performance", "javascript"],
     authorId: "3",
     createdAt: "2025-01-22T16:45:00Z",
     updatedAt: "2025-01-22T16:45:00Z",
     complexity: "O(1)",
   },
   {
-    id: "5",
+    _id: "5",
     title: "API Fetch with Retry",
     description: "Fetch wrapper with automatic retry logic",
     code: `async function fetchWithRetry(
@@ -178,8 +179,8 @@ function useLocalStorage<T>(key: string, initialValue: T) {
     throw error;
   }
 }`,
-    language: "TypeScript",
-    tags: ["api", "utilities", "async"],
+    programmingLanguage: "TypeScript",
+    topics: ["api", "utilities", "async"],
     authorId: "2",
     createdAt: "2025-01-25T11:00:00Z",
     updatedAt: "2025-01-25T11:00:00Z",

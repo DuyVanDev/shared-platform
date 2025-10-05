@@ -8,13 +8,11 @@ export async function GET(req: Request) {
 
   // Lấy token từ cookie
   const cookieHeader = req.headers.get("cookie") || "";
-  console.log("Cookie Header:", cookieHeader);
   const token = cookieHeader
     .split(";")
     .find((c) => c.trim().startsWith("token="))
     ?.split("token=")[1];
 
-  console.log("Extracted Token:", token);
   if (!token) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }

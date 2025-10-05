@@ -1,10 +1,8 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import { allTags, languages } from "@/lib/static-data";
 import { SnippetCard } from "@/components/SnippetCard";
-import { Search } from "lucide-react"; // Thêm icon search
 import Input from "@/components/Input";
 import Select from "@/components/Select";
 import { useTranslations } from "use-intl";
@@ -12,7 +10,7 @@ import { fetchMySnippets } from "@/services/snippetService";
 interface Snippet {
   _id: string;
   title: string;
-  language: string;
+  programmingLanguage: string;
   topics: string[];
   description?: string;
   slug: string;
