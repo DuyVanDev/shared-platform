@@ -1,14 +1,14 @@
 import { NextResponse } from "next/server";
 import dbConnect from "@/lib/db";
 import Snippet from "@/models/Snippet";
-import { verifyToken } from "@/lib/auth"; // jose verify
+import { verifyToken } from "@/lib/auth";
 import "@/models/User";
 function generateSlug(title: string) {
   return title
     .toLowerCase()
     .trim()
-    .replace(/[^\w\s-]/g, "") // bỏ ký tự đặc biệt
-    .replace(/\s+/g, "-"); // thay khoảng trắng bằng "-"
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-");
 }
 
 export async function GET(req: Request) {
@@ -69,7 +69,7 @@ export async function POST(req: Request) {
     slug,
     authorId: user.id,
     description,
-    isPublic: typeof isPublic === "boolean" ? isPublic : true, // mặc định true nếu không truyền
+    isPublic: typeof isPublic === "boolean" ? isPublic : true,
   });
 
   return NextResponse.json(snippet, { status: 201 });

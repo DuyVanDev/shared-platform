@@ -64,7 +64,6 @@ export default function SnippetView() {
   };
 
   const handleDelete = async () => {
-    // Gọi API xóa ở đây nếu muốn
     addToast("Snippet deleted successfully!", "success");
     router.push("/explore");
   };

@@ -32,7 +32,6 @@ export async function fetchSnippetById(id: string) {
   return apiFetch(`/api/snippets/${id}`);
 }
 
-// 🧩 Lấy danh sách snippet của người dùng hiện tại
 export async function fetchMySnippets(params: { page: number; limit: number }) {
   const query = new URLSearchParams({
     page: params.page.toString(),

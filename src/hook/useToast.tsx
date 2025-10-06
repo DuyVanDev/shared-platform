@@ -23,7 +23,6 @@ export function useToast() {
     (message: string, type: "success" | "error" | "info" = "info") => {
       const id = ++toastId;
       setToasts((prev) => [...prev, { id, message, type }]);
-      // 🕒 Chỉ auto close với toast thường
       setTimeout(() => removeToast(id), 3000);
     },
     [removeToast]
@@ -32,7 +31,6 @@ export function useToast() {
   const confirmToast = useCallback((message: string, onConfirm: () => void) => {
     const id = ++toastId;
     setToasts((prev) => [...prev, { id, message, type: "confirm", onConfirm }]);
-    // ❌ KHÔNG setTimeout → confirm sẽ chỉ đóng khi người dùng bấm
   }, []);
 
   const ToastComponent = (

@@ -33,10 +33,7 @@ export async function GET(
   return NextResponse.json(snippet);
 }
 
-export async function PUT(
-  req: Request,
-  { params }: any
-) {
+export async function PUT(req: Request, { params }: any) {
   const id = params.id;
   await dbConnect();
   const token = req.headers.get("cookie")?.split("token=")[1]?.split(";")[0];
@@ -54,18 +51,13 @@ export async function PUT(
   const data = await req.json();
   if (data.code) data.timeComplexity = estimateTimeComplexity(data.code);
   if (data.title && data.title !== snippet.title) {
-    // Optionally update slug if title changed:
-    // data.slug = makeSlug(data.title)
   }
   Object.assign(snippet, data);
   await snippet.save();
   return NextResponse.json(snippet);
 }
 
-export async function DELETE(
-  req: Request,
-  { params }: any
-) {
+export async function DELETE(req: Request, { params }: any) {
   const id = params.id;
   await dbConnect();
   const token = req.headers.get("cookie")?.split("token=")[1]?.split(";")[0];
