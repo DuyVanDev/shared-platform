@@ -114,7 +114,7 @@ export default function DashboardPage() {
       {/* Kết quả */}
       {loading ? (
         // Hiển thị skeleton loading
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8 grid-cols-1 lg:grid-cols-3">
           {Array.from({ length: 6 }).map((_, i) => (
             <div
               key={i}
@@ -138,7 +138,7 @@ export default function DashboardPage() {
         </div>
       ) : (
         // Khi có dữ liệu
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8 grid-cols-1 lg:grid-cols-3">
           {filteredSnippets?.map((snippet) => (
             <SnippetCard
               key={snippet._id}
