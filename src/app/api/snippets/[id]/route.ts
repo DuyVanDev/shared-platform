@@ -36,6 +36,7 @@ export async function GET(
 export async function PUT(req: Request, { params }: any) {
   const id = params.id;
   await dbConnect();
+
   const token = req.headers.get("cookie")?.split("token=")[1]?.split(";")[0];
   const user = await verifyToken(token as any);
 
@@ -49,12 +50,21 @@ export async function PUT(req: Request, { params }: any) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
   const data = await req.json();
+
   if (data.code) data.timeComplexity = estimateTimeComplexity(data.code);
-  if (data.title && data.title !== snippet.title) {
-  }
+
   Object.assign(snippet, data);
   await snippet.save();
-  return NextResponse.json(snippet);
+
+  const populatedSnippet = await Snippet.findById(snippet._id)
+    .populate({
+      path: "authorId",
+      model: "User",
+      select: "name email _id",
+    })
+    .lean();
+
+  return NextResponse.json(populatedSnippet);
 }
 
 export async function DELETE(req: Request, { params }: any) {

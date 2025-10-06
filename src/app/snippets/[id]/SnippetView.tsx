@@ -16,6 +16,9 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useGlobalToast } from "@/contexts/ToastContext";
 import { useTranslations } from "use-intl";
 import { fetchSnippetById } from "@/services/snippetService";
+import Modal from "@/components/Modal";
+import CreateSnippet from "../new/page";
+import { Snippet } from "@/lib/static-data";
 
 export default function SnippetView() {
   const t = useTranslations("Snippet");
@@ -31,6 +34,7 @@ export default function SnippetView() {
   const [snippet, setSnippet] = useState<any>(null);
   const [author, setAuthor] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     if (!id) return;
@@ -63,11 +67,6 @@ export default function SnippetView() {
     addToast(t("SnippetURLcopiedtoclipboard"), "success");
   };
 
-  const handleDelete = async () => {
-    addToast("Snippet deleted successfully!", "success");
-    router.push("/explore");
-  };
-
   if (loading) {
     return (
       <div className="container mx-auto py-10 text-center text-gray-500">
@@ -86,6 +85,12 @@ export default function SnippetView() {
 
   const isOwner = user?.id == snippet.authorId._id;
   const createdDate = new Date(snippet.createdAt).toLocaleDateString();
+  const handleUpdateSnippet = (updated: Snippet) => {
+    setSnippet({
+      ...snippet,
+      ...updated,
+    });
+  };
 
   return (
     <div className="max-w-4xl mx-auto py-10 px-4">
@@ -125,24 +130,17 @@ export default function SnippetView() {
               {isOwner && (
                 <>
                   <button
-                    onClick={() => router.push(`/edit/${snippet._id}`)}
-                    className="p-2 border rounded-md hover:bg-yellow-50 transition"
+                    onClick={() => setIsOpen(true)}
+                    className="p-2 border border-gray-100 rounded-md hover:bg-yellow-50 transition cursor-pointer"
                     title="Sửa"
                   >
                     <Edit className="h-4 w-4 text-yellow-600" />
-                  </button>
-                  <button
-                    onClick={handleDelete}
-                    className="p-2 border rounded-md hover:bg-red-50 transition"
-                    title="Xóa"
-                  >
-                    <Trash2 className="h-4 w-4 text-red-600" />
                   </button>
                 </>
               )}
               <button
                 onClick={handleShare}
-                className="p-2 border rounded-md hover:bg-green-50 transition cursor-pointer"
+                className="p-2 border border-gray-100 rounded-md hover:bg-green-50 transition cursor-pointer"
                 title={t("share")}
               >
                 <Share2 className="h-4 w-4 text-green-600" />
@@ -201,6 +199,19 @@ export default function SnippetView() {
           </pre>
         </div>
       </div>
+
+      <Modal
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        title={t("editSnippet")}
+      >
+        <CreateSnippet
+          initial={snippet}
+          edit={true}
+          setIsOpen={setIsOpen}
+          onUpdate={handleUpdateSnippet}
+        />
+      </Modal>
     </div>
   );
 }
