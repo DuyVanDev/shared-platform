@@ -43,7 +43,7 @@ export default function LoginPage() {
     } else {
       addToast(t("loginSuccessful"), "success");
       login(data.token, data.user);
-      router.push("/dashboard");
+      router.push("/");
     }
   };
 

@@ -58,7 +58,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem("user");
 
     // window.location.href = "/login";
-    router.push("/login");
+    router.push("/");
   };
 
   return (

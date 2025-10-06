@@ -1,16 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Roboto } from "next/font/google";
 import "./globals.css";
-import { NextIntlClientProvider, useMessages } from "next-intl";
+import { NextIntlClientProvider } from "next-intl";
 import { Header } from "@/components/Header";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { ToastProvider } from "@/contexts/ToastContext";
 import { ReactNode } from "react";
 import { getMessages } from "next-intl/server";
-type Props = {
-  children: React.ReactNode;
-  params: { locale: string };
-};
+
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -74,14 +71,14 @@ export default async function RootLayout({
   params,
 }: {
   children: ReactNode;
-  params: any; // 👈 Cho phép Next truyền bất kỳ dạng params nào mà không lỗi
+  params: any;
 }) {
   const { locale } = await params;
   const messages = await getMessages();
 
   return (
     <html lang={locale || "vi"}>
-      <body className="antialiased">
+      <body className={inter.className + " font-lato"}>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <AuthProvider>
             <ToastProvider>

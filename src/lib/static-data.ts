@@ -189,6 +189,7 @@ function useLocalStorage<T>(key: string, initialValue: T) {
 ];
 
 export const languages = [
+  "all",
   "TypeScript",
   "JavaScript",
   "Python",
@@ -197,6 +198,7 @@ export const languages = [
   "Java",
 ];
 export const allTags = [
+  "all",
   "algorithms",
   "search",
   "arrays",

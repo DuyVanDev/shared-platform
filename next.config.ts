@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
         source: "/my-snippets",
         destination: "/snippets/me",
       },
+      {
+        source: "/",
+        destination: "/dashboard",
+      },
     ];
   },
 };

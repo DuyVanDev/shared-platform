@@ -8,25 +8,28 @@ export async function middleware(req: NextRequest) {
   const token = req.cookies.get("token")?.value;
 
   // Nếu user đã login thì chặn vào login/register
-  if (
-    (pathname === "/login" || pathname === "/register" || pathname === "/") &&
-    token
-  ) {
+  if ((pathname === "/login" || pathname === "/register") && token) {
     try {
       await jwtVerify(
         token,
         new TextEncoder().encode(process.env.NEXT_PUBLIC_JWT_SECRET!)
       );
 
-      return NextResponse.redirect(new URL("/dashboard", req.url));
+      return NextResponse.redirect(new URL("/", req.url));
     } catch (err) {
       // token hết hạn thì cho vào login lại
       console.log(err);
     }
   }
 
+  const publicPaths = ["/", "/login", "/register"];
+  const isSnippetDetail = /^\/snippets\/[^/]+$/.test(pathname);
+  const isPublic =
+    publicPaths.includes(pathname) ||
+    pathname === "/snippets" ||
+    isSnippetDetail;
   // Nếu vào /dashboard thì bắt buộc cần token
-  if (pathname.startsWith("/dashboard")) {
+  if (!isPublic) {
     if (!token) {
       return NextResponse.redirect(new URL("/login", req.url));
     }
@@ -49,7 +52,6 @@ export default createMiddleware({
 });
 export const config = {
   matcher: [
-    "/",
     "/dashboard",
     "/login",
     "/register",

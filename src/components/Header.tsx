@@ -64,9 +64,9 @@ export function Header() {
         {/* Navigation */}
         <nav className="flex items-center gap-2 sm:gap-4 ">
           <Link
-            href="/dashboard"
+            href="/"
             className={`px-3 py-2 rounded-lg text-gray-900 font-semibold text-sm transition hover:bg-violet-50 hover:text-violet-700
-      ${pathname === "/dashboard" ? "bg-violet-100 text-violet-700" : ""}`}
+      ${pathname === "/" ? "bg-violet-100 text-violet-700" : ""}`}
           >
             {t("snippets")}
           </Link>
