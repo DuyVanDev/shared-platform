@@ -9,7 +9,6 @@ import Modal from "./Modal";
 import { useState } from "react";
 import { deleteSnippet } from "@/services/snippetService";
 import { useGlobalToast } from "@/contexts/ToastContext";
-import { Snippet } from "@/lib/static-data";
 
 interface SnippetCardProps {
   snippet: any;

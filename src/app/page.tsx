@@ -122,9 +122,27 @@ export default function DashboardPage() {
       </div>
 
       {/* Kết quả */}
-      {filteredSnippets?.length === 0 ? (
+      {loading ? (
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div
+              key={i}
+              className="animate-pulse rounded-xl border border-gray-200 bg-white p-6 shadow-sm"
+            >
+              <div className="h-5 w-2/3 bg-gray-200 rounded mb-4"></div>
+              <div className="h-4 w-1/2 bg-gray-200 rounded mb-3"></div>
+              <div className="h-4 w-full bg-gray-100 rounded mb-3"></div>
+              <div className="h-4 w-5/6 bg-gray-100 rounded"></div>
+              <div className="mt-6 flex gap-2">
+                <div className="h-6 w-16 bg-gray-200 rounded-full"></div>
+                <div className="h-6 w-12 bg-gray-200 rounded-full"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : filteredSnippets?.length === 0 ? (
         <div className="py-16 text-center text-gray-500 text-lg">
-          Không tìm thấy snippet nào.
+          {t("noSnippetsFound")}
         </div>
       ) : (
         <>
@@ -138,26 +156,6 @@ export default function DashboardPage() {
               />
             ))}
           </div>
-          {/* Phân trang */}
-          {/* <div className="flex justify-center items-center gap-2 mt-10">
-            <button
-              className="px-3 py-1 rounded border bg-white hover:bg-gray-100 disabled:opacity-50"
-              disabled={page <= 1}
-              onClick={() => setPage(page - 1)}
-            >
-              Prev
-            </button>
-            <span className="px-3 py-1 font-semibold">
-              {page} / {totalPages || 1}
-            </span>
-            <button
-              className="px-3 py-1 rounded border bg-white hover:bg-gray-100 disabled:opacity-50"
-              disabled={page >= totalPages}
-              onClick={() => setPage(page + 1)}
-            >
-              Next
-            </button>
-          </div> */}
           <Pagination page={page} setPage={setPage} totalPages={totalPages} />
         </>
       )}

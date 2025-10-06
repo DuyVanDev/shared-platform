@@ -1,11 +1,11 @@
 "use client";
 import { useAuth } from "@/contexts/AuthContext";
-import { Code2, User, LogOut, Globe, Plus } from "lucide-react";
+import { Code2, User, LogOut, Globe, Plus, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useRef, useEffect, useState } from "react";
 import { useLocale, useTranslations } from "use-intl";
 import { usePathname } from "next/navigation";
-
+import { motion } from "framer-motion";
 export function Header() {
   const { user, logout } = useAuth();
   const t = useTranslations("Nav");
@@ -14,6 +14,8 @@ export function Header() {
 
   const [openLang, setOpenLang] = useState(false);
   const [openUser, setOpenUser] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const langRef = useRef<HTMLDivElement>(null);
   const userRef = useRef<HTMLDivElement>(null);
 
@@ -61,12 +63,25 @@ export function Header() {
           </span>
         </Link>
 
-        {/* Navigation */}
-        <nav className="flex items-center gap-2 sm:gap-4 ">
+        {/* Mobile menu button */}
+        <button
+          className="md:hidden p-2 rounded-lg hover:bg-violet-50 transition cursor-pointer"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? (
+            <X className="h-6 w-6 text-gray-800" />
+          ) : (
+            <Menu className="h-6 w-6 text-gray-800" />
+          )}
+        </button>
+
+        {/* Navigation (desktop) */}
+        <nav className="hidden md:flex items-center gap-2 sm:gap-4">
           <Link
             href="/"
-            className={`px-3 py-2 rounded-lg text-gray-900 font-semibold text-sm transition hover:bg-violet-50 hover:text-violet-700
-      ${pathname === "/" ? "bg-violet-100 text-violet-700" : ""}`}
+            className={`px-3 py-2 rounded-lg text-gray-900 font-semibold text-sm transition hover:bg-violet-50 hover:text-violet-700 ${
+              pathname === "/" ? "bg-violet-100 text-violet-700" : ""
+            }`}
           >
             {t("snippets")}
           </Link>
@@ -75,8 +90,11 @@ export function Header() {
             <>
               <Link
                 href="/my-snippets"
-                className={`px-3 py-2 rounded-lg text-gray-900 font-semibold text-sm transition hover:bg-violet-50 hover:text-violet-700
-      ${pathname === "/my-snippets" ? "bg-violet-100 text-violet-700" : ""}`}
+                className={`px-3 py-2 rounded-lg text-gray-900 font-semibold text-sm transition hover:bg-violet-50 hover:text-violet-700 ${
+                  pathname === "/my-snippets"
+                    ? "bg-violet-100 text-violet-700"
+                    : ""
+                }`}
               >
                 {t("mySnippets")}
               </Link>
@@ -163,6 +181,100 @@ export function Header() {
           )}
         </nav>
       </div>
+
+      {/* Mobile menu dropdown */}
+      {menuOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
+          className="md:hidden bg-white border-t border-gray-200 shadow-xl rounded-b-2xl overflow-hidden"
+        >
+          <div className="flex flex-col divide-y divide-gray-100">
+            {/* Menu Links */}
+            <div className="flex flex-col space-y-1 p-4">
+              <Link
+                href="/"
+                onClick={() => setMenuOpen(false)}
+                className={`block px-3 py-2 rounded-lg font-medium text-sm transition cursor-pointer ${
+                  pathname === "/"
+                    ? "bg-violet-100 text-violet-700"
+                    : "text-gray-800 hover:bg-violet-50"
+                }`}
+              >
+                {t("snippets")}
+              </Link>
+
+              {user && (
+                <>
+                  <Link
+                    href="/my-snippets"
+                    onClick={() => setMenuOpen(false)}
+                    className={`block px-3 py-2 rounded-lg font-medium text-sm transition ${
+                      pathname === "/my-snippets"
+                        ? "bg-violet-100 text-violet-700"
+                        : "text-gray-800 hover:bg-violet-50"
+                    }`}
+                  >
+                    {t("mySnippets")}
+                  </Link>
+                  <Link
+                    href="/create"
+                    onClick={() => setMenuOpen(false)}
+                    className="flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-violet-600 text-white hover:bg-violet-700 font-medium shadow-md transition"
+                  >
+                    <Plus className="h-5 w-5" />
+                    {t("addnew")}
+                  </Link>
+                </>
+              )}
+            </div>
+
+            {/* Language Switch */}
+            <div className="flex items-center justify-center gap-2 p-3 bg-gray-50">
+              {/* <Globe className="h-4 w-4 text-gray-600" /> */}
+              {["en", "vi"].map((lang) => (
+                <button
+                  key={lang}
+                  onClick={() => handleChangeLocale(lang)}
+                  className={`flex-1 py-2 rounded-lg text-sm font-semibold border transition cursor-pointer ${
+                    locale === lang
+                      ? "bg-violet-100 border-violet-300 text-violet-700"
+                      : "bg-white border-gray-200 text-gray-700 hover:bg-gray-100"
+                  }`}
+                >
+                  {lang === "en" ? "English" : "Tiếng Việt"}
+                </button>
+              ))}
+            </div>
+
+            {/* User or Login */}
+            <div className="p-4">
+              {user ? (
+                <button
+                  onClick={() => {
+                    handleSignOut();
+                    setMenuOpen(false);
+                  }}
+                  className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg hover:bg-violet-50 text-gray-700 font-semibold transition"
+                >
+                  <LogOut className="h-4 w-4" />
+                  {t("logout")}
+                </button>
+              ) : (
+                <Link
+                  href="/login"
+                  onClick={() => setMenuOpen(false)}
+                  className="block text-center px-3 py-2 rounded-lg bg-violet-600 text-white hover:bg-violet-700 font-semibold transition"
+                >
+                  {t("login")}
+                </Link>
+              )}
+            </div>
+          </div>
+        </motion.div>
+      )}
     </header>
   );
 }

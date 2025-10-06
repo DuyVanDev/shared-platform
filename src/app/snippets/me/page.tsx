@@ -69,6 +69,15 @@ export default function DashboardPage() {
     });
   }, [searchQuery, selectedLanguage, selectedTag, snippets]);
 
+  const handleDeleteSnippet = (id: string) => {
+    setSnippets((prev) => prev.filter((s) => s._id !== id));
+  };
+
+  const handleUpdateSnippet = (updated: Snippet) => {
+    setSnippets((prev) =>
+      prev.map((s) => (s._id === updated._id ? updated : s))
+    );
+  };
   return (
     <div className="container mx-auto px-4 py-10">
       <h1 className="mb-10 text-4xl font-extrabold text-gray-900 tracking-tight">
@@ -103,14 +112,40 @@ export default function DashboardPage() {
       </div>
 
       {/* Kết quả */}
-      {filteredSnippets?.length === 0 ? (
+      {loading ? (
+        // Hiển thị skeleton loading
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div
+              key={i}
+              className="animate-pulse rounded-xl border border-gray-200 bg-white p-6 shadow-sm"
+            >
+              <div className="h-5 w-2/3 bg-gray-200 rounded mb-4"></div>
+              <div className="h-4 w-1/2 bg-gray-200 rounded mb-3"></div>
+              <div className="h-4 w-full bg-gray-100 rounded mb-3"></div>
+              <div className="h-4 w-5/6 bg-gray-100 rounded"></div>
+              <div className="mt-6 flex gap-2">
+                <div className="h-6 w-16 bg-gray-200 rounded-full"></div>
+                <div className="h-6 w-12 bg-gray-200 rounded-full"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : filteredSnippets?.length === 0 ? (
+        // Khi không loading mà không có snippet
         <div className="py-16 text-center text-gray-500 text-lg">
-          Không tìm thấy snippet nào.
+          {t("noSnippetsFound")}
         </div>
       ) : (
+        // Khi có dữ liệu
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredSnippets?.map((snippet, index) => (
-            <SnippetCard key={snippet._id} snippet={snippet} />
+          {filteredSnippets?.map((snippet) => (
+            <SnippetCard
+              key={snippet._id}
+              snippet={snippet}
+              onDelete={handleDeleteSnippet}
+              onUpdate={handleUpdateSnippet}
+            />
           ))}
         </div>
       )}
